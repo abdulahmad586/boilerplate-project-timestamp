@@ -25,8 +25,8 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:time", function (req, res) {
-  
-  const time = new Date(req.params.time)
+  const timeStr = req.params.time;
+  const time = new Date(timeStr.includes("-")?timeStr : parseInt(timeStr))
   res.json({unix: time.getTime(), utc: time.toUTCString()});
 });
 
