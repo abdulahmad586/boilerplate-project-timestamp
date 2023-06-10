@@ -33,8 +33,8 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:time", function (req, res) {
   const timeStr = req.params.time;
   const time = new Date(timeStr.includes("-")?timeStr : parseInt(timeStr))
-  if(time == "Invalid Date"){
-    res.json({error: time});
+  if(isNaN(time)){
+    res.json({error: "Invalid Date"});
   }else{
    res.json({unix: time.getTime(), utc: time.toUTCString()}); 
   }
