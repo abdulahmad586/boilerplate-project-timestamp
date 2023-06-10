@@ -24,6 +24,11 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/:time", function (req, res) {
+  
+  const time = new Date(req.params.time)
+  res.json({unix: time.getTime(), utc: time.toUTCString()});
+});
 
 
 // listen for requests :)
