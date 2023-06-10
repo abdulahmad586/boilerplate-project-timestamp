@@ -27,7 +27,12 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:time", function (req, res) {
   const timeStr = req.params.time;
   const time = new Date(timeStr.includes("-")?timeStr : parseInt(timeStr))
-  res.json({unix: time.getTime(), utc: time.toUTCString()});
+  if(time == "Invalid Date"){
+    res.json({error: time});
+  }else{
+   res.json({unix: time.getTime(), utc: time.toUTCString()}); 
+  }
+  
 });
 
 
