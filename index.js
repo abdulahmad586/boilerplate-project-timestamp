@@ -32,7 +32,10 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/:time", function (req, res) {
   const timeStr = req.params.time;
-  const time = new Date(timeStr.includes("-")?timeStr : parseInt(timeStr))
+  let time = new Date(timeStr);
+  if(isNaN(time) && parseInt(time) >0){
+   time = new Date(parseInt(timeStr)); 
+  }
   if(isNaN(time)){
     res.json({error: "Invalid Date"});
   }else{
